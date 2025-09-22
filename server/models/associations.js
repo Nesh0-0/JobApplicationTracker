@@ -2,6 +2,8 @@ const applications = require('../models/jobApplications');
 const users = require('../models/users');
 const companies = require('../models/companies');
 const reminders = require('../models/reminders');
+const messages = require('../models/messages');
+const groups = require('../models/groups');
 
 
 
@@ -14,4 +16,13 @@ companies.belongsTo(users);
 applications.hasMany(reminders);
 reminders.belongsTo(applications);
 
-module.exports = { applications, users, companies, reminders };
+users.hasMany(reminders);
+reminders.belongsTo(users);
+
+users.hasMany(messages);
+messages.belongsTo(users);
+
+groups.hasMany(messages);
+messages.belongsTo(groups);
+
+module.exports = { applications, users, companies, reminders, messages, groups };

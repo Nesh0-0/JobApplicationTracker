@@ -5,7 +5,8 @@ const stats = async (req, res) => {
 
     try {
 
-        const response = await statsServices.getStats();
+        const userId = req.userId.id;
+        const response = await statsServices.getStats(userId);
 
         if (!response.success)
             throw new Error(response.message);

@@ -3,26 +3,28 @@ const { applications, reminders } = require("../models/associations");
 const { Op } = require("sequelize");
 
 // GET /api/stats
-const getStats = async () => {
+const getStats = async (id) => {
     try {
         // Total applications
-        const totalApplications = await applications.count();
+        console.log('Id ----> ', id);
+        const totalApplications = await applications.count({where: {userId: id}});
 
         // Status counts
-        const interviews = await applications.count({ where: { status: "interviewed" } });
-        const offers = await applications.count({ where: { status: "offered" } });
-        const rejections = await applications.count({ where: { status: "rejected" } });
+        const interviews = await applications.count({ where: { status: "interviewed", userId: id } });
+        const offers = await applications.count({ where: { status: "offered", userId: id } });
+        const rejections = await applications.count({ where: { status: "rejected", userId: id } });
 
 
         // Applications by company
         const appsByCompany = await applications.findAll({
             attributes: ["companyName", [require("sequelize").fn("COUNT", require("sequelize").col("id")), "count"]],
+            where: { userId: id },
             group: ["companyName"],
         });
 
         // Reminders status
-        const pendingReminders = await reminders.count({ where: { status: "pending" } });
-        const sentReminders = await reminders.count({ where: { status: "sent" } });
+        const pendingReminders = await reminders.count({ where: { status: "pending", userId: id } });
+        const sentReminders = await reminders.count({ where: { status: "sent", userId: id } });
 
         return {
             success: true,

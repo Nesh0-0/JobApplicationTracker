@@ -8,7 +8,9 @@ const addReminder = async (req, res) => {
 
         const { jobId, reminderDate, message } = req.body;
 
-        const response = await reminderServices.createReminder(jobId, reminderDate, message);
+        const userId = req.userId.id;
+
+        const response = await reminderServices.createReminder(jobId, reminderDate, message, userId);
 
         if (!response.success)
             throw new Error(response.message);

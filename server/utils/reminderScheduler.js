@@ -44,7 +44,7 @@ cron.schedule("* * * * *", async () => {
         for (const reminder of response) {
             const subject = `Reminder: ${reminder.application.companyName}`;
             const htmlContent = `
-        <h3>Hi ${reminder.application.user.name},</h3>
+        <h3>Hi ${reminder.application.user.username},</h3>
         <p>You have a reminder for your job application at <b>${reminder.application.companyName}</b>.</p>
         <p><b>Message:</b> ${reminder.message}</p>
         <p>📅 Reminder Date: ${reminder.reminderDate}</p>
@@ -52,6 +52,7 @@ cron.schedule("* * * * *", async () => {
         <p>Good luck! 🚀</p>
       `;
 
+            console.log(reminder.application.user.username);
             const sent = await emailServices.sendEmail(reminder.application.user.email, subject, htmlContent);
 
             if (sent) {

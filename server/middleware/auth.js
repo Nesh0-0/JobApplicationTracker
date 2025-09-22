@@ -7,9 +7,9 @@ const authenticate = (req, res, next) => {
         const token = req.header('Authorization');
         // console.log(req.header());
         // console.log(token);
-        const userId = jwt.verify(token, process.env.JWT_SECRET_KEY);
-        console.log("userId ----> ", userId);
-        req.userId = userId;
+        const user = jwt.verify(token, process.env.JWT_SECRET_KEY);
+        console.log("user ----> ", user);
+        req.userId = user;
         console.log('Exiting middleware');
         next();
     }

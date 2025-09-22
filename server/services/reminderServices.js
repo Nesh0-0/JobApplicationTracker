@@ -3,13 +3,13 @@ const sequelize = require('../utils/db');
 
 
 
-const createReminder = async (applicationId, reminderDate, message) => {
+const createReminder = async (applicationId, reminderDate, message, userId) => {
 
     const transaction = await sequelize.transaction();
 
     try {
 
-        const response = reminders.create({ applicationId, reminderDate, message });
+        const response = reminders.create({ applicationId, reminderDate, message, userId });
 
         await transaction.commit();
 

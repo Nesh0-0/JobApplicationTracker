@@ -3,8 +3,8 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
-const generateToken = (id) => {
-    return jwt.sign({ id }, process.env.JWT_SECRET_KEY, { expiresIn: '1h' });
+const generateToken = (id, username) => {
+    return jwt.sign({ id, username }, process.env.JWT_SECRET_KEY, { expiresIn: '1h' });
 };
 
 const addUser = async (req, res) => {
@@ -75,7 +75,7 @@ const login = async (req, res) => {
             throw new Error('Password incorrect. Please try again.');
         }
 
-        const token = generateToken(userDetails.details.id);
+        const token = generateToken(userDetails.details.id, userDetails.details.username);
         res.status(200).json({ success: true, message: 'Login successful.', token, details: userDetails.details });
 
     } catch (err) {

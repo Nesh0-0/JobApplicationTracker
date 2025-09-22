@@ -115,10 +115,13 @@ document.getElementById("editCompanyForm").addEventListener("submit", async (e) 
 
 
 
-// Logout
-document.getElementById("logoutBtn").addEventListener("click", () => {
-  localStorage.removeItem("token");
-  sessionStorage.removeItem("token");
+document.getElementById('logoutBtn').addEventListener('click', () => {
+
+  if (!confirm('Do you really want to log out?'))
+    return
+
+  localStorage.removeItem('token');
+
   window.location.href = "login.html";
 });
 

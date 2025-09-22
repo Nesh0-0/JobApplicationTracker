@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Group Chat</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    #chatBox {
+      height: 400px;
+      overflow-y: auto;
+      padding: 10px;
+      background-color: #f8f9fa;
+      border-radius: 5px;
+    }
+    #chatForm input {
+      flex: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-4">
+    <!-- Header: Group Name + Leave Button -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h2 id="groupTitle" class="mb-0">Chat</h2>
+      <button id="leaveGroupBtn" class="btn btn-danger btn-sm">Leave Group</button>
+    </div>
+
+    <!-- Chat Box -->
+    <div class="card mb-3">
+      <div class="card-body" id="chatBox">
+        <!-- Messages will appear here -->
+      </div>
+    </div>
+
+    <!-- Input Form -->
+    <form id="chatForm" class="d-flex">
+      <input type="text" id="messageInput" class="form-control me-2" placeholder="Type your message..." required>
+      <button type="submit" class="btn btn-primary">Send</button>
+    </form>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="groupChat.js"></script>
+</body>
+</html>

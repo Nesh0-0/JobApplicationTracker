@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Company Groups</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-4">
+    <div class="d-flex justify-content-center mb-4 gap-2 flex-wrap">
+            <a href="companies.html" class="btn btn-outline-success">Companies</a>
+            <a href="userProfile.html" class="btn btn-outline-success">Profile</a>
+            <a href="applicationsPage.html" class="btn btn-outline-success">Applications</a>
+            <a href="stats.html" class="btn btn-outline-success">Dashboard</a>
+            <a href="resumeScanner.html" class="btn btn-outline-success me-2">Resume review</a>
+            <button id="logoutBtn" class="btn btn-outline-danger">Logout</button>
+        </div>
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    
+    <h3>Join a Company Group</h3>
+    <!-- Create Group Button -->
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createGroupModal">
+      + Create Group
+    </button>
+  </div>
+
+  <!-- Group List -->
+  <div class="list-group" id="groupList">
+    <!-- Groups will be dynamically added here -->
+  </div>
+</div>
+
+<!-- Modal for Creating Group -->
+<div class="modal fade" id="createGroupModal" tabindex="-1" aria-labelledby="createGroupLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="createGroupLabel">Create New Group</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="createGroupForm" onsubmit="createGroup(event)">
+          <div class="mb-3">
+            <label for="groupName" class="form-label">Group Name</label>
+            <input type="text" class="form-control" id="groupName" placeholder="Enter company/group name" required>
+          </div>
+          <button type="submit" class="btn btn-success w-100">Create</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script src="discussionPortal.js"></script>
+</body>
+</html>

@@ -117,7 +117,7 @@ const uploadToS3 = (data, fileName) => {
             secretAccessKey: process.env.AWS_SECRET_KEY,
             region: 'ap-south-2' 
             });
-        const params = {Bucket: "jobapplicationtrackeerbucket", Key: fileName, Body: data, ACL: 'public-read'};
+        const params = {Bucket: "jobapplicationtrackerbucket", Key: fileName, Body: data, ACL: 'public-read'};
         return new Promise((resolve, reject) => {
             
             s3Bucket.upload(params, (err, s3response) => {
