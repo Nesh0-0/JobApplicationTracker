@@ -25,4 +25,7 @@ messages.belongsTo(users);
 groups.hasMany(messages);
 messages.belongsTo(groups);
 
+users.hasMany(groups);
+groups.belongsTo(users);
+
 module.exports = { applications, users, companies, reminders, messages, groups };

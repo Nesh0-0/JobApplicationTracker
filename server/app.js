@@ -105,3 +105,5 @@ db.sync().then(() => {
 }).catch(err => {
     console.log("Could not run server!");
 });
+
+module.exports = { io };
